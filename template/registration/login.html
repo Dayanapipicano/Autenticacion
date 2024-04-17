@@ -1,0 +1,28 @@
+{% if user.is_authenticated %}
+<div class="alert alert-info">¡Bienvenido de nuevo!</div>
+{% else %}
+<div class="alert alert-info">Por favor, inicia sesión</div>
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-danger">¡Credenciales incorrectas! Por favor, inténtalo de nuevo.</div>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  
+  <div class="mb-3">
+    <label for="username" class="form-label">Nombre de usuario</label>
+    {{ form.username }}
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña</label>
+    {{ form.password }}
+  </div>
+
+  <button type="submit" class="btn btn-success btn-lg btn-block float-end">Iniciar sesión</button>
+  
+  <input type="hidden" name="next" value="{{ next }}" />
+  <a href="{% url 'password_reset' %}" class="d-block mt-3">¿Olvidaste tu contraseña?</a>
+  <a href="{% url 'app:registro' %}" class="d-block mt-3">No estoy registrado</a>
+</form>

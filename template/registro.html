@@ -1,0 +1,11 @@
+<form action="{% url 'app:registro'%}" method="post">
+    {% csrf_token %}
+    <div class="form-outline mb-4">
+        {#<td>{{form.username.label_tag}}</td>#}
+        <td>{{ form}}</td>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-lg btn-block float-end">Registrarse</button>
+</form>
+
+
