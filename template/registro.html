@@ -1,11 +1,26 @@
-<form action="{% url 'app:registro'%}" method="post">
-    {% csrf_token %}
-    <div class="form-outline mb-4">
-        {#<td>{{form.username.label_tag}}</td>#}
-        <td>{{ form}}</td>
+{% extends 'index.html' %}
+
+{%block body%}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center">Registro</h5>
+            <form action="{% url 'app:registro'%}" method="post" class="needs-validation" novalidate>
+              {% csrf_token %}
+              <div class="form-outline mb-4">
+                <td>{{form}}</td>
+              </div>
+              <button type="submit" class="btn btn-success btn-lg btn-block">Registrarse</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  
 
-    <button type="submit" class="btn btn-success btn-lg btn-block float-end">Registrarse</button>
-</form>
 
-
+{%endblock body%}

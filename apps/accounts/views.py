@@ -16,14 +16,16 @@ def Bienvenido(request):
     return render(request, 'index.html')
 
 def registro(request):
-    form = CustomUserCreationForm()
     if request.method == "POST": 
         form = CustomUserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
             if user is not None:
-                make_login(request, user)
-                
+                # Redireccionar al usuario a la página de inicio de sesión
+                return redirect('login')
+    else:
+        form = CustomUserCreationForm()
+        
     return render(request, 'registro.html', {'form': form})
 
 @login_required 
@@ -52,3 +54,10 @@ def profile(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+
+#EJEMPLO DE TEST
+
+def suma(a, b):
+    return a + b

@@ -26,8 +26,14 @@
         <a class="nav-link text-light" href="{% url 'listar_jugador' %}">Lista</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="{% url 'logout' %}">logout</a>
+        <a class="nav-link text-light" href="{% url 'login' %}">Iniciar sesion</a>
       </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'logout' %}">Logout</a>
+      </li>
+      {% endif %}
+      
       
     </ul>
   </div>
