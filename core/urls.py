@@ -50,9 +50,10 @@ urlpatterns = [
  # Añade una barra al final y nombre de la URL
     
     # Personalizar ruta y archivo html para cambiar la contraseña
-    path("cambiar-clave/", auth_views.PasswordChangeView.as_view(template_name="registration/password_change_form.html"), name="password_change"),  # Añade una barra al final y nombre de la URL
+    #path("cambiar-clave/", auth_views.PasswordChangeView.as_view(template_name="registration/password_change_form.html"), name="password_change"),  # Añade una barra al final y nombre de la URL
+    path('reset-password/', auth_views.PasswordResetView.as_view(template_name='registration/password_change_done.html'), name='password_reset'),
+    path('change-password/', auth_views.PasswordChangeView.as_view(template_name='password_reset_form.html'), name='password_change'),
     
-    # DUDA CON EL VIEWS 
     # path('logout/', auth_views.logout_view, name='logout'),  # Si estás usando una vista de Django para el logout, importa y utiliza la vista aquí
 ]
 
