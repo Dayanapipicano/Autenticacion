@@ -14,6 +14,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def Bienvenido(request):
     return render(request, 'index.html')
+def cambio(request):
+    return render(request, 'registration/password_reset_form.html')
 
 def registro(request):
     if request.method == "POST": 

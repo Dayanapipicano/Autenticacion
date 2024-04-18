@@ -22,6 +22,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth.views import LogoutView
+from apps.accounts.views import cambio
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', Home, name='index'),
@@ -51,8 +52,13 @@ urlpatterns = [
     
     # Personalizar ruta y archivo html para cambiar la contraseña
     #path("cambiar-clave/", auth_views.PasswordChangeView.as_view(template_name="registration/password_change_form.html"), name="password_change"),  # Añade una barra al final y nombre de la URL
-    path('reset-password/', auth_views.PasswordResetView.as_view(template_name='registration/password_change_done.html'), name='password_reset'),
-    path('change-password/', auth_views.PasswordChangeView.as_view(template_name='password_reset_form.html'), name='password_change'),
+    
+    
+    path('change', cambio, name='cambio'),
+    path('reset-password/', auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'), name='password_reset')
+
+    #path('reset-password/', auth_views.PasswordResetView.as_view(template_name='registration/password_change_done.html'), name='password_reset'),
+    
     
     # path('logout/', auth_views.logout_view, name='logout'),  # Si estás usando una vista de Django para el logout, importa y utiliza la vista aquí
 ]
