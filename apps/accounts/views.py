@@ -63,3 +63,27 @@ def logout_view(request):
 
 def suma(a, b):
     return a + b
+
+
+from django.http import HttpResponse
+from django.core.mail import send_mail
+
+def simple_mail(request):
+    if request.method == 'POST':
+        # Obtener la dirección de correo electrónico del formulario
+        recipient_email = request.POST.get('email')
+
+        # Verificar si se proporcionó una dirección de correo electrónico válida
+        if recipient_email:
+            # Enviar el correo electrónico con la dirección de correo electrónico del formulario como destinatario
+            send_mail(
+                subject='Cambio de contraseña',
+                message='Confirmas el cambio de contraseña',
+                from_email='nova@gmail.com',
+                recipient_list=[recipient_email],
+            )
+            return HttpResponse('Correo enviado exitosamente')
+        else:
+            return HttpResponse('La dirección de correo electrónico no se proporcionó correctamente')
+    else:
+        return HttpResponse('El formulario debe ser enviado utilizando el método POST')
