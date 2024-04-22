@@ -97,4 +97,3 @@ def buscar_jugadores(request):
 
 
 
-"hoasdnkj"
