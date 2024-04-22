@@ -9,11 +9,14 @@ from django.conf import settings
 from .models import UserPerfil
 import os
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.core.paginator import Paginator
 
 
 def Bienvenido(request):
     return render(request, 'index.html')
+
+
+
 def cambio(request):
     return render(request, 'registration/password_reset_form.html')
 
@@ -63,3 +66,5 @@ def logout_view(request):
 
 def suma(a, b):
     return a + b
+
+
