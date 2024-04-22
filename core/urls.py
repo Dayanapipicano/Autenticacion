@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth.views import LogoutView
 from apps.accounts.views import cambio
+
 from apps.funciones.views import  buscar_jugadores, Paginacion
 
 urlpatterns = [
@@ -57,7 +58,10 @@ urlpatterns = [
     
     
     path('change', cambio, name='cambio'),
+
     path('reset-password/', auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'), name='password_reset'),
+
+    #path('reset-password/', auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'), name='password_reset'),
 
     #path('reset-password/', auth_views.PasswordResetView.as_view(template_name='registration/password_change_done.html'), name='password_reset'),
     path('buscar/', buscar_jugadores, name='buscar_jugadores'),
