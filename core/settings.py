@@ -74,7 +74,6 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 #INTEGRACION CON DJANGO MAILTRAP
 
 DEBUG = True 
-EMAIL_BACKEND "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'sandbox.smtp..io'
 EMAIL_HOST_USER = 'ffeccf23d24f86'
 EMAIL_HOST_PASSWORD = '96ccb6e88cc4a0'
