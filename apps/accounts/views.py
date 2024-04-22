@@ -10,6 +10,9 @@ from .models import UserPerfil
 import os
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
+from django.http import HttpResponse
+from django.core.mail import send_mail
+
 
 
 def Bienvenido(request):
@@ -56,23 +59,9 @@ def profile(request):
 
     return render(request, 'registration/profile.html', {'form':form})
 
-def logout_view(request):
-    logout(request)
-    return redirect('login')
-
-
-
-#EJEMPLO DE TEST
-
-def suma(a, b):
-    return a + b
-
-
-
-from django.http import HttpResponse
-from django.core.mail import send_mail
-
+#envio de correo electronico
 def simple_mail(request):
+    
     if request.method == 'POST':
         # Obtener la dirección de correo electrónico del formulario
         recipient_email = request.POST.get('email')
@@ -91,3 +80,20 @@ def simple_mail(request):
             return HttpResponse('La dirección de correo electrónico no se proporcionó correctamente')
     else:
         return HttpResponse('El formulario debe ser enviado utilizando el método POST')
+
+#cierre de session 
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
+
+
+
+#EJEMPLO DE TEST
+
+def suma(a, b):
+    return a + b
+
+
+#VISTA BASADA EN CLASE

@@ -2,8 +2,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import JugadorForm
 from .models import Jugador
 from django.core.paginator import Paginator
+from django.views.generic import View, TemplateView, ListView
+#PAGINANA DE INICIO 
+#FUNCIONES
 def Home(request):
     return render(request,'index.html')
+
+#CLASES
+class TemplateView(View):
+    def get(self, request, *args, **kwargs):
+        pass
+    
+class Inicio(TemplateView):
+    
+    template_name = 'index.html'
 
 #CREAR JUGADOR 
 def agregar_jugador(request):
@@ -11,7 +23,7 @@ def agregar_jugador(request):
         form = JugadorForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('listar_jugador')
+            return redirect('paginacion')
         
     else:
         form = JugadorForm()
@@ -19,10 +31,19 @@ def agregar_jugador(request):
 
 #LISTAR JUGADOR Y PAGINACION  
 
+#CLASES
+class listado(ListView):
+    template_name = 'listar_jugador.html'
+    context_object_name = 'page_obj'
+    queryset = Jugador.objects.filter()
+
+#FUNCIONES
 def listar_jugador(request):
     jugadores = Jugador.objects.all()
     return render(request,'listar_jugador.html',{'jugadores':jugadores})
 
+
+#PAGINACION DE JUGADORES
 def Paginacion(request, jugadores=None):
     if jugadores is None:
         jugadores = Jugador.objects.all()
@@ -39,7 +60,7 @@ def eliminar_jugador(request, id):
     jugador = Jugador.objects.get(id=id)
     if request.method == 'GET':
         jugador.delete()
-        return redirect('listar_jugador')
+        return redirect('paginacion')
 
 #EDITAR JUGADOR
 def editar_jugador(request,id):
@@ -56,16 +77,23 @@ def editar_jugador(request,id):
         form = JugadorForm(request.POST, instance=jugador)
         if form.is_valid():
             form.save()
-        return redirect('listar_jugador')
+        return redirect('paginacion')
     return render(request,'editar_jugador.html',{'form':form})
 
+
+#FUNCION DE BUSQUEDA  
 def buscar_jugadores(request):
     query = request.GET.get('q')
     jugadores = Jugador.objects.all()
 
     if query:
         jugadores = jugadores.filter(
+            #insensibles a mayúsculas y minúsculas 
             nombre__icontains=query) | jugadores.filter(
             apellido__icontains=query)
 
     return Paginacion(request, jugadores)
+
+
+
+
