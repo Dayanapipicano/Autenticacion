@@ -34,8 +34,8 @@
                 <td>{{ jugador.nombre }}</td>
                 <td>{{ jugador.apellido }}</td>
                 <td>
-                    <a href="{% url 'editar_jugador' jugador.id %}" class="btn btn-primary">Editar</a>
-                    <a href="{% url 'eliminar_jugador' jugador.id %}" class="btn btn-danger">Eliminar</a>
+                    <a href="{% url 'actualizar' jugador.id %}" class="btn btn-primary">Editar</a> <!-- actualizar --> <!--  editar_jugador -->
+                    <a href="{% url 'eliminar' jugador.id %}" class="btn btn-danger">Eliminar</a> <!-- eliminar_jugador -->  <!-- eliminar -->
                 </td>
             </tr>
             {% endfor %}

@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<div class="container mt-5"> <!-- Aumentamos el margen en la parte superior -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Confirmación de eliminación</h5>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <p><strong>¿Desea eliminar el registro <span class="text-danger">{{ object.nombre }}</span>?</strong></p>
+                        <button type="submit" class="btn btn-danger btn-block">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

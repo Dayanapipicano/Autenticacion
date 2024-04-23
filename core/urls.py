@@ -21,7 +21,7 @@ from apps.accounts.views import Bienvenido, logout_view,cambio
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
-from apps.funciones.views import Inicio, listado
+from apps.funciones.views import Inicio, listado, Actualizar,CreateJudador,Eliminar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +30,7 @@ urlpatterns = [
     # ENDPOINT CREAR
     #path('crear/', agregar_jugador, name='agregar_jugador'),  # No es necesario incluir 'apps.funciones.urls' aquí
     path('crear/', include('apps.funciones.urls')),
+    path('agregar/', CreateJudador.as_view(), name='agregar'),
     
     # ENDPOINT LISTAR
     path('lista/', listado.as_view(), name='listar_jugador'),
@@ -37,10 +38,11 @@ urlpatterns = [
     
     # ENDPOINT EDITAR
     path('editar/<int:id>/', editar_jugador, name='editar_jugador'),  
+    path('actualizar/<int:pk>/', Actualizar.as_view(), name='actualizar'),  
     
     # ENDPOINT ELIMINAR
     path('eliminar/<int:id>/', eliminar_jugador, name='eliminar_jugador'), 
-    
+    path('delete/<int:pk>', Eliminar.as_view(), name='eliminar'),
     
     # AUTENTICACIÓN
     
